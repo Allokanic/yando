@@ -2,13 +2,11 @@ package dev.allokanic.yando.controllers;
 
 import dev.allokanic.yando.dto.requests.ItemsImportRequest;
 import dev.allokanic.yando.dto.responses.Item;
+import dev.allokanic.yando.dto.responses.ItemFlat;
 import dev.allokanic.yando.services.NodesService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /*
 * Question about errors
@@ -30,12 +28,17 @@ public class DataController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public HttpStatus deleteFile(@PathVariable("id") String id, @RequestParam String date) {
-        return HttpStatus.ACCEPTED;
+    public void deleteFile(@PathVariable("id") String id, @RequestParam String date) {
+        service.deleteItem(id, date);
     }
 
     @GetMapping("/nodes/{id}")
     public Item getItem(@PathVariable("id") String id) {
         return service.getItem(id);
+    }
+
+    @GetMapping("/updates")
+    public List<ItemFlat> getHistory(@RequestParam String date) {
+        return service.getLastDayUpdatedItemsList(date);
     }
 }
