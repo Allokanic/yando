@@ -36,6 +36,6 @@ public class DataController {
 
     @GetMapping("/nodes/{id}")
     public Item getItem(@PathVariable("id") String id) {
-        return new Item();
+        return service.getItem(id);
     }
 }
