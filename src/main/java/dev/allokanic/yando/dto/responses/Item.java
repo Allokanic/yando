@@ -1,8 +1,9 @@
-package dev.allokanic.yando.structures;
+package dev.allokanic.yando.dto.responses;
 
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Item {
@@ -12,5 +13,5 @@ public class Item {
     private String parentId;
     private String type;
     private int size;
-    ArrayList<Item> children;
+    List<Item> children;
 }

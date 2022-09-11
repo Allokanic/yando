@@ -1,4 +1,4 @@
-package dev.allokanic.yando.structures;
+package dev.allokanic.yando.dto;
 
 public enum FileType {
     FILE, FOLDER
