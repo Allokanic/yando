@@ -1,6 +1,8 @@
 package dev.allokanic.yando.controllers;
 
-import dev.allokanic.yando.structures.Item;
+import dev.allokanic.yando.dto.requests.ItemsImportRequest;
+import dev.allokanic.yando.dto.responses.Item;
+import dev.allokanic.yando.services.NodesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,25 +15,27 @@ import java.util.ArrayList;
 *
  */
 
-@Controller
+@RestController
 public class DataController {
 
+    private final NodesService service;
 
+    public DataController(NodesService service) {
+        this.service = service;
+    }
 
     @PostMapping("/imports")
-    public ResponseEntity<Object> importData(@RequestBody ArrayList<Item> items, @RequestBody String updateTime) {
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    public void importData(@RequestBody ItemsImportRequest imports) {
+        service.importEntries(imports);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFile(@PathVariable("id") String id, @RequestBody String date) {
-
+    public HttpStatus deleteFile(@PathVariable("id") String id, @RequestParam String date) {
+        return HttpStatus.ACCEPTED;
     }
 
     @GetMapping("/nodes/{id}")
-    public ResponseEntity<Object> getItem(@PathVariable("id") String id) {
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    public Item getItem(@PathVariable("id") String id) {
+        return new Item();
     }
-
-
 }
