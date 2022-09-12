@@ -47,7 +47,6 @@ public class NodesService {
         }
     }
 
-
     public Item getItem(String id) {
         Entry entry = entriesRepository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
         return assembleItem(entry);

@@ -4,8 +4,11 @@ import dev.allokanic.yando.dto.requests.ItemsImportRequest;
 import dev.allokanic.yando.dto.responses.Item;
 import dev.allokanic.yando.dto.responses.ItemFlat;
 import dev.allokanic.yando.services.NodesService;
+import dev.allokanic.yando.validation.annotation.IsISO8601;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /*
@@ -14,6 +17,7 @@ import java.util.List;
  */
 
 @RestController
+@Validated
 public class DataController {
 
     private final NodesService service;
@@ -23,12 +27,12 @@ public class DataController {
     }
 
     @PostMapping("/imports")
-    public void importData(@RequestBody ItemsImportRequest imports) {
+    public void importData(@Valid @RequestBody ItemsImportRequest imports) {
         service.importEntries(imports);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFile(@PathVariable("id") String id, @RequestParam String date) {
+    public void deleteFile(@PathVariable("id") String id, @IsISO8601 @RequestParam String date) {
         service.deleteItem(id, date);
     }
 
@@ -38,7 +42,7 @@ public class DataController {
     }
 
     @GetMapping("/updates")
-    public List<ItemFlat> getHistory(@RequestParam String date) {
+    public List<ItemFlat> getHistory(@IsISO8601 @RequestParam String date) {
         return service.getLastDayUpdatedItemsList(date);
     }
 }
