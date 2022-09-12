@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.allokanic.yando.dto.FileType;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -18,5 +19,6 @@ public class ItemImport {
     @JsonProperty(required = true)
     private FileType type;
     @JsonProperty(required = true)
+    @Min(0)
     private int size;
 }

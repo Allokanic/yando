@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 public class ItemFlat {
     private String id;
     private String url;
-    private String time;
+    private String date;
     private String parentId;
     private FileType type;
     private int size;

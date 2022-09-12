@@ -26,7 +26,7 @@ public class EntryMapper {
                 .setType(entry.getType())
                 .setParentId(entry.getParentId())
                 .setSize(entry.getSize())
-                .setTime(entry.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")));
+                .setDate(entry.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")));
     }
 
     public ItemFlat convertEntryToFlatItem(Entry entry) {
@@ -36,6 +36,6 @@ public class EntryMapper {
                 .setType(entry.getType())
                 .setParentId(entry.getParentId())
                 .setSize(entry.getSize())
-                .setTime(entry.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")));
+                .setDate(entry.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")));
     }
 }

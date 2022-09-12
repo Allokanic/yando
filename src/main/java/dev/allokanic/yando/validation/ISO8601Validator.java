@@ -1,4 +1,6 @@
-package dev.allokanic.yando.validation.annotation;
+package dev.allokanic.yando.validation;
+
+import dev.allokanic.yando.validation.annotation.IsISO8601;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
